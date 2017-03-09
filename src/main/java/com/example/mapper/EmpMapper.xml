@@ -32,7 +32,40 @@
 		   d.LOC	  as dept_loc	   
 	  from emp e left outer join dept d
 	    on e.deptno = d.deptno
-
 </select>
 
+<select id="selectPageWithDept" resultMap="empWithDept">
+	select e.EMPNO    as emp_empno,
+		   e.ENAME    as emp_ename,
+		   e.JOB	  as emp_job,
+		   e.MGR	  as emp_mgr,
+		   e.HIREDATE as emp_hiredate,
+		   e.SAL	  as emp_sal,
+		   e.COMM	  as emp_comm,
+		   e.DEPTNO	  as emp_deptno,
+		   d.DEPTNO   as dept_deptno,
+		   d.DNAME    as dept_dname,
+		   d.LOC	  as dept_loc	   
+	  from emp e left outer join dept d
+	    on e.deptno = d.deptno
+	offset #{firstItem}-1 rows
+	 fetch next #{itemsPerPage} rows only
+</select>
+
+<select id="selectByEmpnoWithDept" resultMap="empWithDept">
+	select e.EMPNO    as emp_empno,
+		   e.ENAME    as emp_ename,
+		   e.JOB	  as emp_job,
+		   e.MGR	  as emp_mgr,
+		   e.HIREDATE as emp_hiredate,
+		   e.SAL	  as emp_sal,
+		   e.COMM	  as emp_comm,
+		   e.DEPTNO	  as emp_deptno,
+		   d.DEPTNO   as dept_deptno,
+		   d.DNAME    as dept_dname,
+		   d.LOC	  as dept_loc	   
+	  from emp e left outer join dept d
+	    on e.deptno = d.deptno
+	 where e.empno = #{empno}
+</select>
 </mapper>

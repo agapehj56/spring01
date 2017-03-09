@@ -51,3 +51,60 @@ select c1.ID				as city_id,
   fetch next 10 rows only;
   
   
+  
+  select count(*)
+    from city
+   where country_code = 'KOR';
+ 
+ --
+ -- selectPage
+ --
+ select *
+   from city
+--   where country_code = 'KOR'
+   ORDER BY id
+ offset 2 ROWS
+  FETCH NEXT 3 ROWS only;
+ 
+ --
+ -- selectPageWithCountry
+ --
+ select *
+   from city c1 left outer join country c2
+     on c1.COUNTRY_CODE = c2.CODE
+--   WHERE c1.COUNTRY_CODE = 'KOR'
+  ORDER BY ID
+ offset 2 rows
+  fetch next 3 rows only;
+  
+
+--
+-- CountryMapper.selectPage
+--  
+  
+select *
+  from country
+ order by code
+offset 2 rows
+ fetch next 3 rows only;
+ 
+select *
+  from city
+ where country_code = 'AGO';
+
+select *
+  from city
+ where country_code = 'AIA';
+  
+--
+-- CountryMapper.selectPageWithCity
+-- 
+
+select *
+  from country c1 left outer join city c2
+    on c1.code = c2.country_code
+ order by c1.code
+offset 2 rows
+ fetch next 3 rows only;
+
+

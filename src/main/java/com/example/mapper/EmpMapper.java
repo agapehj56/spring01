@@ -11,6 +11,9 @@ import com.example.util.Pagination;
 @Mapper
 public interface EmpMapper {
 	
+	/*
+	 *  Select
+	 */
 	@Select("select count(*) from emp")
 	int selectTotalCount();
 	
@@ -26,5 +29,21 @@ public interface EmpMapper {
 			" fetch next #{itemsPerPage} rows only		"
 	})
 	List<Emp> selectPage(Pagination paging);
-	List<Emp> selectPageWithDept();
+	List<Emp> selectPageWithDept(Pagination paging);
+	
+	@Select("select * from emp where empno=#{empno}")
+	Emp selectByEmpno(int empno);
+	Emp selectByEmpnoWithDept(int empno);
+	
+	/*
+	 *  Insert
+	 */
+	
+	/*
+	 *  Update
+	 */
+	
+	/*
+	 *  Delete
+	 */
 }

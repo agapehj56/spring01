@@ -66,7 +66,7 @@ public class CityMapperTests {
 	
 	@Test
 	public void test03_selectById(){
-		City city = mapper.selectById(1000000);
+		City city = mapper.selectById(1);
 		
 		if(city == null){
 			throw new NotFoundRuntimeException("City 정보가 없습니다.");
