@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>template.jsp</title>
+<title>list.jsp</title>
 <!-- 1. animate -->
 <link rel="stylesheet" href="/webjars/animate.css/3.5.2/animate.min.css">
 <!-- 2. bootstrap -->
@@ -24,6 +24,11 @@
 </c:if>
 </head>
 <body>
-
+<h1>City List</h1>
+<ol>
+<c:forEach var="city" items="${citys}">
+	<li>${city.id}, ${city.name}, ${city.population}, ${city.country.name}</li>
+</c:forEach>
+</ol>
 </body>
 </html>
