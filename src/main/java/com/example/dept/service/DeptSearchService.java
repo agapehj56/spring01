@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.domain.Dept;
+import com.example.exception.NotFoundRuntimeException;
 import com.example.mapper.DeptMapper;
 import com.example.util.Pagination;
 
@@ -59,6 +60,20 @@ public class DeptSearchService {
 	}
 	
 	public Dept getDeptByDeptno(int deptno){
-		return null;
+		log.info("getDeptByDeptno(" + deptno + ")");
+		return getDeptByDeptno(deptno, false);
+	}
+	
+	public Dept getDeptByDeptno(int deptno, boolean withEmp){
+		log.info("getDeptByDeptno(" + deptno + ", " + withEmp + ")");
+		Dept dept = null;
+		if(withEmp)
+			dept = deptmapper.selectByDeptnoWithEmp(deptno);
+		else
+			dept = deptmapper.selectByDeptno(deptno);
+		
+		if(dept == null)
+			throw new NotFoundRuntimeException("해당 부서가 없습니다.");
+		return dept;
 	}
 }
