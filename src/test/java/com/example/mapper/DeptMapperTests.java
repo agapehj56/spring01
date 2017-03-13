@@ -83,4 +83,19 @@ public class DeptMapperTests {
 		
 		System.out.println(dept);
 	}
+	
+	@Test
+	public void test04_insert(){
+		Dept dept = new Dept();
+		dept.setDeptno(60);
+		dept.setDname("총무부");
+		
+		Dept d = mapper.selectByDeptno(dept.getDeptno());
+		if(d != null){
+			System.out.println("해당 부서는 존재합니다.");
+			return;
+		}		
+		int cnt = mapper.insert(dept);
+		System.out.println(mapper.selectByDeptno(dept.getDeptno()));
+	}
 }

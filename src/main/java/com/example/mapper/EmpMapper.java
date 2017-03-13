@@ -38,6 +38,7 @@ public interface EmpMapper {
 	/*
 	 *  Insert
 	 */
+	int insert(Emp emp);		// insert한 개수.
 	
 	/*
 	 *  Update

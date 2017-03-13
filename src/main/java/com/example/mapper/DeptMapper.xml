@@ -34,7 +34,6 @@
 	    on d.deptno = e.deptno
 </select>
 
-
 <resultMap type="com.example.domain.Dept" id="deptWithEmp2">
 	<collection property="emps" column="dept_deptno" select="selectEmpsByDeptno">
 	</collection>
@@ -53,7 +52,6 @@
 	 fetch next #{itemsPerPage} rows only
 </select>
 
-
 <select id="selectByDeptnoWithEmp" resultMap="deptWithEmp">
 	select d.DEPTNO   as dept_deptno,
 		   d.DNAME    as dept_dname,
@@ -70,4 +68,20 @@
 	    on d.deptno = e.deptno
 	 where d.deptno = #{deptno}
 </select>
+
+<insert id="insert">
+	insert into dept
+	(
+		deptno,
+		dname,
+		loc
+	)
+	values
+	(
+		#{deptno},
+		#{dname},
+		#{loc}
+	)
+</insert>
+
 </mapper>
